@@ -11,7 +11,9 @@ import {
 	StyledForm,
 	StyledSearchIcon,
 	StyledLi,
-	StyledUserIcon
+	StyledUserIcon,
+	StyledLogOut,
+	StyledProfileDiv
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
 
@@ -23,12 +25,12 @@ const Header = () => {
 			<StyledHeader>
 				<StyledContainer>
 					<StyledLogo>
-						<StyledLogoImage src='/Logo.svg' alt='' />
+						<StyledLogoImage src='public/Logo.svg' alt='' />
 						<StyledH1>LectUs</StyledH1>
 					</StyledLogo>
 					<StyledNav>
 						<StyledForm>
-							<StyledSearchIcon src='search.svg' alt='' />
+							<StyledSearchIcon src='public/search.svg' alt='' />
 							<StyledSearch type='text' placeholder='Buscar lectura...' />
 						</StyledForm>
 						<StyledUl>
@@ -38,7 +40,10 @@ const Header = () => {
 							<StyledLi>
 								<a href=''>Siguiendo</a>
 							</StyledLi>
+							<StyledProfileDiv>
 							<StyledUserIcon src='' alt='' />
+							<StyledLogOut>Cerrar Sesión</StyledLogOut>
+							</StyledProfileDiv>
 						</StyledUl>
 					</StyledNav>
 				</StyledContainer>
@@ -49,7 +54,7 @@ const Header = () => {
 		<StyledHeader>
 			<StyledContainer>
 				<StyledLogo>
-					<StyledLogoImage src='/Logo.svg' alt='' />
+					<StyledLogoImage src='public/Logo.svg' alt='' />
 					<StyledH1>LectUs</StyledH1>
 				</StyledLogo>
 				<StyledNav>

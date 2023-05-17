@@ -73,7 +73,7 @@ const StyledButton = styled.button`
 	background-color: ${COLORS.yellow};
 	border: none;
 	padding: 0.8rem 1rem ;
-	font-family: 'Cygre Regular';
+	font-family: 'Cygre Semibold', sans-serif;
 	text-transform: uppercase;
 	cursor: pointer;
 
@@ -96,7 +96,7 @@ const StyledButtonGoogle = styled.button`
 	text-transform: uppercase;
 	align-items: center;
 	margin: 1rem auto;
-	font-family: 'Cygre Regular';
+	font-family: 'Cygre Semibold', sans-serif;
 	&:hover{
 		background-color: black;
 		color: white;

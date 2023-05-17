@@ -42,7 +42,8 @@ const StyledSearch = styled.input`
 	border: 0;
 	padding: 0.5rem 6rem 0.65rem 2.5rem;
 	border-radius: 50px;
-	font-family: 'Cygre Book', sans-serif;
+	font-family: 'Arimo', sans-serif;
+	height: 100%;
 
 	&:focus {
 		outline: none;
@@ -64,22 +65,56 @@ const StyledSearchIcon = styled.img`
 const StyledLi = styled.li`
 	background-color: black;
 	color: white;
-	padding: 0.4rem 1.4rem 0.6rem 1.4rem;
+	padding: 0.6rem 1.4rem;
 	font-size: 0.88rem;
 	border-radius: 50px;
 	text-transform: uppercase;
-	font-family: 'Cygre Semibold', sans-serif;
+	font-family: 'Arimo', sans-serif;
+	height: 100%;
+	font-weight: 500;
 
 	&:hover {
 		color: ${COLORS.yellow};
 	}
 `;
 
+const StyledLogOut = styled.div`
+	background-color: black;
+	position: absolute;
+	color: white;
+	padding: 1rem;
+	width: 160px;
+	display: none;
+	bottom: -4rem;
+	text-transform: uppercase;
+	font-family: 'Arimo', sans-serif;
+	font-size: 0.88rem;
+	
+`
+
+const StyledProfileDiv = styled.div`
+	position: relative;
+	&:hover {
+		${StyledLogOut}{
+			display: block;
+		}
+	}
+`
+
 const StyledUserIcon = styled.img`
 	background-color: red;
 	width: 40px;
+	height: 40px;
 	border-radius: 50%;
+	cursor: pointer;
+
+	
 `;
+
+
+
+
+
 
 export {
 	StyledH1,
@@ -93,5 +128,7 @@ export {
 	StyledForm,
 	StyledSearchIcon,
 	StyledLi,
-	StyledUserIcon
+	StyledUserIcon,
+	StyledLogOut,
+	StyledProfileDiv
 };

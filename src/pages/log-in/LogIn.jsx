@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
 import {
 	StyledMain,
@@ -14,60 +14,58 @@ import {
 	StyledButton,
 	StyledButtonGoogle,
 	StyledGoogleIcon
-} from './styles';
+} from './styles.js';
 import { AuthContext } from '../../contexts/auth.context';
 
-const SignIn = () => {
+const LogIn = () => {
 	const { currentUser, setCurrentUser } = useContext(AuthContext);
-	const [registerData, setRegisterData] = useState({
+	const [loginData, setLoginData] = useState({
 		email: null,
 		password: null
 	});
 	return (
 		<StyledMain>
-			<StyledTitle>Sign in</StyledTitle>
+			<StyledTitle>Log in</StyledTitle>
 			<StyledText>
 				Bienvenid@ a Lectus tu web de lecturas, donde descubriras tu proxima
 				lectura, podras hacer un seguimiento de estas o conectar con la
 				comunidad
 			</StyledText>
-			<StyledForm onSubmit={e => handleSubmit(e, registerData)}>
+			<StyledForm onSubmit={e => handleSubmit(e, loginData)}>
 				<StyledInputContainer>
 					<StyledLabel htmlFor='email'>Email</StyledLabel>
 					<StyledInput type='text' name='email' id='email' onChange={e =>
-							setRegisterData({ ...registerData, email: e.target.value })
+							setLoginData({ ...loginData, email: e.target.value })
 						} />
 				</StyledInputContainer>
 				<StyledInputContainer>
 					<StyledLabel htmlFor='password'>Contraseña</StyledLabel>
 					<StyledInput type='text' name='password' id='password' onChange={e =>
-							setRegisterData({
-								...registerData,
-								password: e.target.value
-							})
+							setLoginData({ ...loginData, password: e.target.value })
 						} />
 				</StyledInputContainer>
 				<StyledTextSignIn>
-					¿Ya tienes cuenta? <StyledLogIn>Log In</StyledLogIn>
+					¿No tienes cuenta? <StyledLogIn>Sign In</StyledLogIn>
 				</StyledTextSignIn>
-				<StyledButton>Sign in</StyledButton>
+				<StyledButton>Log in</StyledButton>
 			</StyledForm>
 			<StyledButtonGoogle>
-				Sign in with google
+				Log in with google
 				<StyledGoogleIcon src='/Google.svg' alt='' />
 			</StyledButtonGoogle>
 		</StyledMain>
 	);
 };
 
-const handleSubmit = async (e, registerData) => {
+const handleSubmit = async (e, loginData) => {
 	e.preventDefault();
-	const { email, password } = registerData;
+	const { email, password } = loginData;
 	try {
-		await createUserWithEmailAndPassword(auth, email, password);
+		await signInWithEmailAndPassword(auth, email, password);
 	} catch (err) {
-		console.log(err);
+		console.log('Invalid credential');
 	}
 };
 
-export default SignIn;
+
+export default LogIn

@@ -1,16 +1,17 @@
-import Header from './components/header/Header';
-import SignIn from './pages/sign-in/SignIn';
-import { AuthProvider } from './providers/auth.provider';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router/Router';
 import { GlobalStyles } from './styles/GlobalStyles';
+import { AuthProvider } from './providers/auth.provider';
 
 const App = () => {
 	return (
 		<>
-			<GlobalStyles />
-			<AuthProvider>
-				<Header />
-				<SignIn />
-			</AuthProvider>
+			<BrowserRouter>
+				<GlobalStyles />
+				<AuthProvider>
+					<Router />
+				</AuthProvider>
+			</BrowserRouter>
 		</>
 	);
 };
