@@ -16,8 +16,10 @@ import {
 	StyledGoogleIcon
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+	const navigate = useNavigate();
 	const { currentUser, setCurrentUser } = useContext(AuthContext);
 	const [registerData, setRegisterData] = useState({
 		email: null,
@@ -34,21 +36,32 @@ const SignIn = () => {
 			<StyledForm onSubmit={e => handleSubmit(e, registerData)}>
 				<StyledInputContainer>
 					<StyledLabel htmlFor='email'>Email</StyledLabel>
-					<StyledInput type='text' name='email' id='email' onChange={e =>
+					<StyledInput
+						type='text'
+						name='email'
+						id='email'
+						onChange={e =>
 							setRegisterData({ ...registerData, email: e.target.value })
-						} />
+						}
+					/>
 				</StyledInputContainer>
 				<StyledInputContainer>
 					<StyledLabel htmlFor='password'>Contraseña</StyledLabel>
-					<StyledInput type='text' name='password' id='password' onChange={e =>
+					<StyledInput
+						type='text'
+						name='password'
+						id='password'
+						onChange={e =>
 							setRegisterData({
 								...registerData,
 								password: e.target.value
 							})
-						} />
+						}
+					/>
 				</StyledInputContainer>
 				<StyledTextSignIn>
-					¿Ya tienes cuenta? <StyledLogIn>Log In</StyledLogIn>
+					¿Ya tienes cuenta?{' '}
+					<StyledLogIn onClick={() => navigate('/log-in')}>Log In</StyledLogIn>
 				</StyledTextSignIn>
 				<StyledButton>Sign in</StyledButton>
 			</StyledForm>

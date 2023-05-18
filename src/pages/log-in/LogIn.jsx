@@ -1,6 +1,4 @@
-import { useContext, useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../config/firebase.config';
+import { useContext } from 'react';
 import {
 	StyledMain,
 	StyledTitle,
@@ -16,56 +14,80 @@ import {
 	StyledGoogleIcon
 } from './styles.js';
 import { AuthContext } from '../../contexts/auth.context';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { FORM_VALIDATIONS } from '../../constants/form-validations/formValidations';
 
 const LogIn = () => {
+	const navigate = useNavigate();
 	const { currentUser, setCurrentUser } = useContext(AuthContext);
-	const [loginData, setLoginData] = useState({
-		email: null,
-		password: null
-	});
-	return (
-		<StyledMain>
-			<StyledTitle>Log in</StyledTitle>
-			<StyledText>
-				Bienvenid@ a Lectus tu web de lecturas, donde descubriras tu proxima
-				lectura, podras hacer un seguimiento de estas o conectar con la
-				comunidad
-			</StyledText>
-			<StyledForm onSubmit={e => handleSubmit(e, loginData)}>
-				<StyledInputContainer>
-					<StyledLabel htmlFor='email'>Email</StyledLabel>
-					<StyledInput type='text' name='email' id='email' onChange={e =>
-							setLoginData({ ...loginData, email: e.target.value })
-						} />
-				</StyledInputContainer>
-				<StyledInputContainer>
-					<StyledLabel htmlFor='password'>Contraseña</StyledLabel>
-					<StyledInput type='text' name='password' id='password' onChange={e =>
-							setLoginData({ ...loginData, password: e.target.value })
-						} />
-				</StyledInputContainer>
-				<StyledTextSignIn>
-					¿No tienes cuenta? <StyledLogIn>Sign In</StyledLogIn>
-				</StyledTextSignIn>
-				<StyledButton>Log in</StyledButton>
-			</StyledForm>
-			<StyledButtonGoogle>
-				Log in with google
-				<StyledGoogleIcon src='/Google.svg' alt='' />
-			</StyledButtonGoogle>
-		</StyledMain>
-	);
+	const {
+		handleSubmit,
+		register,
+		formState: { errors }
+	} = useForm({ mode: 'onBlur' });
+
+	if (!currentUser)
+		return (
+			<StyledMain>
+				<StyledTitle>Log in</StyledTitle>
+				<StyledText>
+					Bienvenid@ a Lectus tu web de lecturas, donde descubriras tu proxima
+					lectura, podras hacer un seguimiento de estas o conectar con la
+					comunidad
+				</StyledText>
+				<StyledForm onSubmit={handleSubmit(onSubmit)}>
+					<StyledInputContainer>
+						<StyledLabel htmlFor='email'>Email</StyledLabel>
+						<StyledInput
+							type='text'
+							name='email'
+							id='email'
+							{...register('email', {
+								required: FORM_VALIDATIONS.email.require,
+								pattern: {
+									value: FORM_VALIDATIONS.email.pattern,
+									message: FORM_VALIDATIONS.email.message
+								}
+							})}
+						/>
+					</StyledInputContainer>
+					{errors.email && <p>{errors.email.message}</p>}
+					<StyledInputContainer>
+						<StyledLabel htmlFor='password'>Contraseña</StyledLabel>
+						<StyledInput
+							type='text'
+							name='password'
+							id='password'
+							{...register('password', {
+								required: FORM_VALIDATIONS.password.require,
+								pattern: {
+									value: FORM_VALIDATIONS.password.pattern,
+									message: FORM_VALIDATIONS.password.message
+								}
+							})}
+						/>
+					</StyledInputContainer>
+					{errors.password && <p>{errors.password.message}</p>}
+					<StyledTextSignIn>
+						¿No tienes cuenta?{' '}
+						<StyledLogIn onClick={() => navigate('/sign-in')}>
+							Sign In
+						</StyledLogIn>
+					</StyledTextSignIn>
+					<StyledButton>Log in</StyledButton>
+				</StyledForm>
+				<StyledButtonGoogle>
+					Log in with google
+					<StyledGoogleIcon src='/Google.svg' alt='' />
+				</StyledButtonGoogle>
+			</StyledMain>
+		);
 };
 
-const handleSubmit = async (e, loginData) => {
-	e.preventDefault();
-	const { email, password } = loginData;
-	try {
-		await signInWithEmailAndPassword(auth, email, password);
-	} catch (err) {
-		console.log('Invalid credential');
-	}
+const onSubmit = (data, e) => {
+	console.log(data);
+	console.log(e);
 };
 
-
-export default LogIn
+export default LogIn;

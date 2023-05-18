@@ -6,15 +6,14 @@ import { AuthContext } from '../contexts/auth.context';
 const Layout = () => {
 	const { currentUser, setCurrentUser } = useContext(AuthContext);
 
-    if (currentUser){
-        return(
-        <>
-        <Header />
-        <Outlet />
-        </>
-        );
-    }
-
+	if (currentUser) {
+		return (
+			<>
+				<Header />
+				<Outlet />
+			</>
+		);
+	}
 
 	return (
 		<>

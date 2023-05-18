@@ -8,6 +8,7 @@ const StyledH1 = styled.h1`
 const StyledLogo = styled.div`
 	display: flex;
 	gap: 0.8rem;
+	cursor: pointer;
 `;
 
 const StyledLogoImage = styled.img`
@@ -40,8 +41,8 @@ const StyledNav = styled.nav`
 
 const StyledSearch = styled.input`
 	border: 0;
-	padding: 0.5rem 6rem 0.65rem 2.5rem;
 	border-radius: 50px;
+	background-color: transparent;
 	font-family: 'Arimo', sans-serif;
 	height: 100%;
 
@@ -52,24 +53,27 @@ const StyledSearch = styled.input`
 
 const StyledForm = styled.form`
 	position: relative;
+	width: 290px;
+	display: flex;
+	padding: 0.6rem 1rem;
+	border-radius: 50px;
+	background-color: ${COLORS.bgColor};
+	align-items: center;
+	gap: 1rem;
 `;
 
 const StyledSearchIcon = styled.img`
-	position: absolute;
-	transform: translate(0, -50%);
-	top: 50%;
-	left: 1rem;
 	width: 13px;
 `;
 
 const StyledLi = styled.li`
 	background-color: black;
 	color: white;
-	padding: 0.6rem 1.4rem;
+	padding: 0.5rem 1.4rem;
 	font-size: 0.88rem;
 	border-radius: 50px;
 	text-transform: uppercase;
-	font-family: 'Arimo', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	height: 100%;
 	font-weight: 500;
 
@@ -82,24 +86,33 @@ const StyledLogOut = styled.div`
 	background-color: black;
 	position: absolute;
 	color: white;
-	padding: 1rem;
-	width: 160px;
-	display: none;
-	bottom: -4rem;
+	padding: 0.5rem;
+	width: 180px;
+	opacity: 0;
+	transform: translateY(100%);
+	bottom: -0.2rem;
 	text-transform: uppercase;
-	font-family: 'Arimo', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 0.88rem;
-	
-`
+	transition: opacity 0.2s;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	border-radius: 22px;
+
+	&:hover {
+		opacity: 1;
+	}
+`;
 
 const StyledProfileDiv = styled.div`
 	position: relative;
 	&:hover {
-		${StyledLogOut}{
-			display: block;
+		${StyledLogOut} {
+			opacity: 1;
 		}
 	}
-`
+`;
 
 const StyledUserIcon = styled.img`
 	background-color: red;
@@ -107,14 +120,21 @@ const StyledUserIcon = styled.img`
 	height: 40px;
 	border-radius: 50%;
 	cursor: pointer;
-
-	
 `;
 
+const StyledProfileOption = styled.p`
+	font-family: 'Poppins', sans-serif;
+	padding: 0.5rem 0;
+	margin: 0 0.5rem;
+	font-weight: 500;
 
-
-
-
+	&:hover {
+		color: ${COLORS.yellow};
+	}
+	&:first-child {
+		border-bottom: 1px solid white;
+	}
+`;
 
 export {
 	StyledH1,
@@ -130,5 +150,6 @@ export {
 	StyledLi,
 	StyledUserIcon,
 	StyledLogOut,
-	StyledProfileDiv
+	StyledProfileDiv,
+	StyledProfileOption
 };

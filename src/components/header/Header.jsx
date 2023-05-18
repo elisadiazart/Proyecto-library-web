@@ -13,63 +13,71 @@ import {
 	StyledLi,
 	StyledUserIcon,
 	StyledLogOut,
-	StyledProfileDiv
+	StyledProfileDiv,
+	StyledProfileOption
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../config/firebase.config';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Header = () => {
+	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 
-	if (currentUser) {
-		return (
-			<StyledHeader>
-				<StyledContainer>
-					<StyledLogo>
-						<StyledLogoImage src='public/Logo.svg' alt='' />
-						<StyledH1>LectUs</StyledH1>
-					</StyledLogo>
-					<StyledNav>
-						<StyledForm>
-							<StyledSearchIcon src='public/search.svg' alt='' />
-							<StyledSearch type='text' placeholder='Buscar lectura...' />
-						</StyledForm>
-						<StyledUl>
-							<StyledLi>
-								<a href=''>Calendario</a>
-							</StyledLi>
-							<StyledLi>
-								<a href=''>Siguiendo</a>
-							</StyledLi>
-							<StyledProfileDiv>
-							<StyledUserIcon src='' alt='' />
-							<StyledLogOut>Cerrar Sesión</StyledLogOut>
-							</StyledProfileDiv>
-						</StyledUl>
-					</StyledNav>
-				</StyledContainer>
-			</StyledHeader>
-		);
-	}
 	return (
 		<StyledHeader>
 			<StyledContainer>
-				<StyledLogo>
-					<StyledLogoImage src='public/Logo.svg' alt='' />
+				<StyledLogo onClick={() => navigate('/')}>
+					<StyledLogoImage src='public/Logo.svg' alt='Logo Lectus' />
 					<StyledH1>LectUs</StyledH1>
 				</StyledLogo>
 				<StyledNav>
+					<StyledForm>
+						<StyledSearchIcon src='public/search.svg' alt='' />
+						<StyledSearch type='text' placeholder='Buscar lectura...' />
+					</StyledForm>
 					<StyledUl>
-						<StyledLi>
-							<a href=''>Sign in</a>
-						</StyledLi>
-						<StyledLi>
-							<a href=''>Log in</a>
-						</StyledLi>
+						{currentUser ? (
+							<>
+								<StyledLi>
+									<NavLink href=''>Calendario</NavLink>
+								</StyledLi>
+								<StyledLi>
+									<NavLink href=''>Siguiendo</NavLink>
+								</StyledLi>
+								<StyledProfileDiv>
+									<StyledUserIcon src='' alt='' />
+									<StyledLogOut>
+										<StyledProfileOption>Perfil</StyledProfileOption>
+										<StyledProfileOption
+											onClick={() => handleSignOut(navigate)}
+										>
+											Cerrar Sesión
+										</StyledProfileOption>
+									</StyledLogOut>
+								</StyledProfileDiv>
+							</>
+						) : (
+							<>
+								<StyledLi>
+									<NavLink to={'/sign-in'}>Sign in</NavLink>
+								</StyledLi>
+								<StyledLi>
+									<NavLink to={'/log-in'}>Log in</NavLink>
+								</StyledLi>
+							</>
+						)}
 					</StyledUl>
 				</StyledNav>
 			</StyledContainer>
 		</StyledHeader>
 	);
+};
+
+const handleSignOut = async navigate => {
+	await signOut(auth);
+	navigate('/');
 };
 
 export default Header;

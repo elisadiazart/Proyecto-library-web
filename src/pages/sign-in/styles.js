@@ -16,13 +16,13 @@ const StyledTitle = styled.h2`
 `;
 
 const StyledText = styled.p`
-	font-family: 'Cygre Regular', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	text-align: center;
 	margin: auto;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	margin-bottom: 3rem;
-	width: 80%;
-	line-height: 1.7rem;
+	width: 72%;
+	line-height: 1.5rem;
 `;
 
 const StyledForm = styled.form`
@@ -40,7 +40,7 @@ const StyledInputContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
-	padding: 0.8rem 1.5rem;
+	padding: 0.5rem 1.5rem;
 	border-radius: 50px;
 	border: none;
 	font-family: 'Cygre Regular', sans-serif;
@@ -57,8 +57,8 @@ const StyledLabel = styled.label`
 `;
 
 const StyledTextSignIn = styled.p`
-	font-family: 'Cygre Regular', sans-serif;
-	font-size: 0.9rem;
+	font-family: 'Poppins', sans-serif;
+	font-size: 0.8rem;
 	text-align: right;
 	margin: 1rem 0;
 `;
@@ -66,18 +66,22 @@ const StyledTextSignIn = styled.p`
 const StyledLogIn = styled.span`
 	text-decoration: underline;
 	cursor: pointer;
+
+	&:hover {
+		color: ${COLORS.yellow};
+	}
 `;
 
 const StyledButton = styled.button`
 	width: 100%;
 	background-color: ${COLORS.yellow};
 	border: none;
-	padding: 0.8rem 1rem ;
-	font-family: 'Cygre Regular';
+	padding: 0.8rem 1rem;
+	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;
 	cursor: pointer;
 
-	&:hover{
+	&:hover {
 		background-color: black;
 		color: white;
 	}
@@ -85,31 +89,28 @@ const StyledButton = styled.button`
 
 const StyledGoogleIcon = styled.img`
 	width: 18px;
-`
+`;
 
 const StyledButtonGoogle = styled.button`
 	display: flex;
 	gap: 0.5rem;
 	background-color: ${COLORS.yellow};
 	border: none;
-	padding: 0.7rem 5.9rem;
+	padding: 0.8rem 5.9rem;
 	text-transform: uppercase;
 	align-items: center;
 	margin: 1rem auto;
-	font-family: 'Cygre Regular';
-	&:hover{
+	font-family: 'Poppins', sans-serif;
+	cursor: pointer;
+	&:hover {
 		background-color: black;
 		color: white;
 
-		${StyledGoogleIcon}{
+		${StyledGoogleIcon} {
 			filter: invert(1);
 		}
-		
 	}
 `;
-
-
-
 
 export {
 	StyledMain,
