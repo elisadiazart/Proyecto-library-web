@@ -4,7 +4,7 @@ import { COLORS } from '../../constants/colors';
 const StyledMain = styled.main`
 	width: 550px;
 	margin: auto;
-	margin-top: 6rem;
+	margin-top: 4rem;
 `;
 
 const StyledTitle = styled.h2`
@@ -111,6 +111,13 @@ const StyledButtonGoogle = styled.button`
 	}
 `;
 
+
+const StyledError = styled.p`
+	font-size: 0.8rem;
+	font-family: 'Poppins', sans-serif;
+	color: ${COLORS.darkYellow};
+`
+
 export {
 	StyledMain,
 	StyledTitle,
@@ -123,5 +130,6 @@ export {
 	StyledLogIn,
 	StyledButton,
 	StyledButtonGoogle,
-	StyledGoogleIcon
+	StyledGoogleIcon,
+	StyledError
 };

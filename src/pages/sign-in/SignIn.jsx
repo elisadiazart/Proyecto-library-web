@@ -13,18 +13,22 @@ import {
 	StyledLogIn,
 	StyledButton,
 	StyledButtonGoogle,
-	StyledGoogleIcon
+	StyledGoogleIcon,
+	StyledError
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { FORM_VALIDATIONS } from '../../constants/form-validations/formValidations';
 
 const SignIn = () => {
 	const navigate = useNavigate();
 	const { currentUser, setCurrentUser } = useContext(AuthContext);
-	const [registerData, setRegisterData] = useState({
-		email: null,
-		password: null
-	});
+	const {
+		handleSubmit,
+		register,
+		formState: { errors }
+	} = useForm({ mode: 'onBlur' });
 	return (
 		<StyledMain>
 			<StyledTitle>Sign in</StyledTitle>
@@ -33,32 +37,39 @@ const SignIn = () => {
 				lectura, podras hacer un seguimiento de estas o conectar con la
 				comunidad
 			</StyledText>
-			<StyledForm onSubmit={e => handleSubmit(e, registerData)}>
+			<StyledForm onSubmit={handleSubmit(onSubmit)}>
 				<StyledInputContainer>
 					<StyledLabel htmlFor='email'>Email</StyledLabel>
 					<StyledInput
 						type='text'
 						name='email'
 						id='email'
-						onChange={e =>
-							setRegisterData({ ...registerData, email: e.target.value })
-						}
+						{...register('email', {
+							required: FORM_VALIDATIONS.email.require,
+							pattern: {
+								value: FORM_VALIDATIONS.email.pattern,
+								message: FORM_VALIDATIONS.email.message
+							}
+						})}
 					/>
 				</StyledInputContainer>
+				{errors.email && <StyledError>{errors.email.message}</StyledError>}
 				<StyledInputContainer>
 					<StyledLabel htmlFor='password'>Contraseña</StyledLabel>
 					<StyledInput
 						type='text'
 						name='password'
 						id='password'
-						onChange={e =>
-							setRegisterData({
-								...registerData,
-								password: e.target.value
-							})
-						}
+						{...register('password', {
+							required: FORM_VALIDATIONS.password.require,
+							pattern: {
+								value: FORM_VALIDATIONS.password.pattern,
+								message: FORM_VALIDATIONS.password.message
+							}
+						})}
 					/>
 				</StyledInputContainer>
+				{errors.password && <StyledError>{errors.password.message}</StyledError>}
 				<StyledTextSignIn>
 					¿Ya tienes cuenta?{' '}
 					<StyledLogIn onClick={() => navigate('/log-in')}>Log In</StyledLogIn>
@@ -73,14 +84,9 @@ const SignIn = () => {
 	);
 };
 
-const handleSubmit = async (e, registerData) => {
-	e.preventDefault();
-	const { email, password } = registerData;
-	try {
-		await createUserWithEmailAndPassword(auth, email, password);
-	} catch (err) {
-		console.log(err);
-	}
+const onSubmit = (data, e) => {
+	console.log(data);
+	console.log(e);
 };
 
 export default SignIn;

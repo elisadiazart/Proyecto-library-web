@@ -112,6 +112,12 @@ const StyledButtonGoogle = styled.button`
 	}
 `;
 
+const StyledError = styled.p`
+	font-size: 0.8rem;
+	font-family: 'Poppins', sans-serif;
+	color: ${COLORS.darkYellow};
+`
+
 export {
 	StyledMain,
 	StyledTitle,
@@ -124,5 +130,6 @@ export {
 	StyledLogIn,
 	StyledButton,
 	StyledButtonGoogle,
-	StyledGoogleIcon
+	StyledGoogleIcon,
+	StyledError
 };

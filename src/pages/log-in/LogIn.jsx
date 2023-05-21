@@ -11,7 +11,8 @@ import {
 	StyledLogIn,
 	StyledButton,
 	StyledButtonGoogle,
-	StyledGoogleIcon
+	StyledGoogleIcon,
+	StyledError
 } from './styles.js';
 import { AuthContext } from '../../contexts/auth.context';
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +53,7 @@ const LogIn = () => {
 							})}
 						/>
 					</StyledInputContainer>
-					{errors.email && <p>{errors.email.message}</p>}
+					{errors.email && <StyledError>{errors.email.message}</StyledError>}
 					<StyledInputContainer>
 						<StyledLabel htmlFor='password'>Contraseña</StyledLabel>
 						<StyledInput
@@ -68,7 +69,7 @@ const LogIn = () => {
 							})}
 						/>
 					</StyledInputContainer>
-					{errors.password && <p>{errors.password.message}</p>}
+					{errors.password && <StyledError>{errors.password.message}</StyledError>}
 					<StyledTextSignIn>
 						¿No tienes cuenta?{' '}
 						<StyledLogIn onClick={() => navigate('/sign-in')}>

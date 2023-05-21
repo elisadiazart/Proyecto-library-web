@@ -23,6 +23,6 @@ export const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-export const blogCollectionReference = collection(db, 'post-1');
+export const blogCollectionReference = collection(db, 'books');
 
 export const storage = getStorage(app);
