@@ -57,7 +57,7 @@ const LogIn = () => {
 					<StyledInputContainer>
 						<StyledLabel htmlFor='password'>Contraseña</StyledLabel>
 						<StyledInput
-							type='text'
+							type='password'
 							name='password'
 							id='password'
 							{...register('password', {
@@ -69,7 +69,9 @@ const LogIn = () => {
 							})}
 						/>
 					</StyledInputContainer>
-					{errors.password && <StyledError>{errors.password.message}</StyledError>}
+					{errors.password && (
+						<StyledError>{errors.password.message}</StyledError>
+					)}
 					<StyledTextSignIn>
 						¿No tienes cuenta?{' '}
 						<StyledLogIn onClick={() => navigate('/sign-in')}>
