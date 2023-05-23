@@ -12,25 +12,26 @@ import { BOOKS } from '../../constants/libros de prueba de caca/librosdeKK';
 const Home = () => {
 	const booksPerPage = 18;
 	const [currentPage, setCurrentPage] = useState(0);
+	const [posts, setPosts] = useState([]);
+	const { currentUser } = useContext(AuthContext);
 
-	const dataToRender = BOOKS.slice(
+	const dataToRender = posts.slice(
 		currentPage * booksPerPage,
 		(currentPage + 1) * booksPerPage
 	);
 
-	const [posts, setPosts] = useState([]);
-	const { currentUser } = useContext(AuthContext);
 
-	// useEffect(() => {
-	// 	const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
-	// 		const dataInfo = snapshot.docs.map(doc => ({
-	// 			...doc.data(),
-	// 			id: doc.id
-	// 		}));
-	// 		dataInfo.length === 0 ? setPosts(null) : setPosts(dataInfo);
-	// 	});
-	// 	return () => subscribeToData();
-	// }, []);
+
+	useEffect(() => {
+		const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
+			const dataInfo = snapshot.docs.map(doc => ({
+				...doc.data(),
+				id: doc.id
+			}));
+			dataInfo.length === 0 ? setPosts(null) : setPosts(dataInfo);
+		});
+		return () => subscribeToData();
+	}, []);
 
 	return (
 		<StyledMain>

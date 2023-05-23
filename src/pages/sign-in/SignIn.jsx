@@ -34,6 +34,7 @@ const SignIn = () => {
 				Bienvenid@ a Lectus tu web de lecturas, donde descubriras tu proxima
 				lectura, podras hacer un seguimiento de estas o conectar con la
 				comunidad.
+				Registrate para disfrutar de toda la web y sus ventajas.
 			</StyledText>
 			<StyledForm onSubmit={handleSubmit(onSubmit)}>
 				<StyledInputContainer>
