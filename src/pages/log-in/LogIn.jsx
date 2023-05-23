@@ -18,6 +18,8 @@ import { AuthContext } from '../../contexts/auth.context';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FORM_VALIDATIONS } from '../../constants/form-validations/formValidations';
+import { GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import { auth } from '../../config/firebase.config.js';
 
 const LogIn = () => {
 	const navigate = useNavigate();
@@ -80,7 +82,7 @@ const LogIn = () => {
 					</StyledTextSignIn>
 					<StyledButton>Log in</StyledButton>
 				</StyledForm>
-				<StyledButtonGoogle>
+				<StyledButtonGoogle onClick={() => loginWithGoogle}>
 					Log in with google
 					<StyledGoogleIcon src='/Google.svg' alt='' />
 				</StyledButtonGoogle>
@@ -92,5 +94,17 @@ const onSubmit = (data, e) => {
 	console.log(data);
 	console.log(e);
 };
+
+
+const loginWithGoogle = async () => {
+	const provider = new GoogleAuthProvider()
+	try{
+		const result = await signInWithPopup(auth, provider)
+		const credential = GoogleAuthProvider.credentialFromResult(result)
+		console.log(credential);
+	}catch (err){
+		console.log(err);
+	}
+}
 
 export default LogIn;

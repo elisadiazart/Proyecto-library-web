@@ -2,15 +2,18 @@ import { useContext, useEffect, useState } from 'react';
 import { blogCollectionReference } from '../../config/firebase.config';
 
 import { AuthContext } from '../../contexts/auth.context';
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
 import { StyledMain, StyledRow } from './styles';
 import SectionTitle from '../../components/section-title/SectionTitle';
 import BookCard from '../../components/book-card/BookCard';
-import { set } from 'react-hook-form';
 
 const Home = () => {
 	const [posts, setPosts] = useState([]);
 	const { currentUser } = useContext(AuthContext);
+	const [page, setPage] = useState({
+		start: 0,
+		end: 18
+	})
 	const [postsToRender, setPostToRender] = useState([]);
 
 	useEffect(() => {
@@ -20,15 +23,19 @@ const Home = () => {
 				id: doc.id
 			}));
 			dataInfo.length === 0 ? setPosts(null) : setPosts(dataInfo);
+			dataInfo.length > 0 && nextPage(posts, setPostToRender, page.start, page.end)
+			
 		});
 		return () => subscribeToData();
 	}, []);
+
+	
 
 	return (
 		<StyledMain>
 			<SectionTitle text='Descubre nuevas lecturas' />
 			<StyledRow>
-				{postsToRender.map((post, index) => {
+				{postsToRender.map(post => {
 					return (
 						<BookCard
 							key={post.id}
@@ -46,8 +53,8 @@ const Home = () => {
 	);
 };
 
-const nextPage = (posts, setPostToRender) => {
-	setPostToRender(posts.slice(0, 18));
+const nextPage = (posts, setPostToRender, start, end) => {
+	setPostToRender(posts.slice(start, end));
 };
 
 export default Home;

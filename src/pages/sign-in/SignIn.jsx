@@ -1,6 +1,4 @@
-import { useContext, useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../config/firebase.config';
+import { useContext, } from 'react';
 import {
 	StyledMain,
 	StyledTitle,
