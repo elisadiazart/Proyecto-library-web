@@ -6,11 +6,13 @@ import { onSnapshot } from 'firebase/firestore';
 import { StyledMain, StyledRow } from './styles';
 import SectionTitle from '../../components/section-title/SectionTitle';
 import BookCard from '../../components/book-card/BookCard';
+import PaginationController from '../../components/pagination-controller/PaginationController';
 
 const Home = () => {
 	const [posts, setPosts] = useState([]);
 	const { currentUser } = useContext(AuthContext);
 	const [page, setPage] = useState({
+		currentPage: 1,
 		start: 0,
 		end: 18
 	})
@@ -23,12 +25,11 @@ const Home = () => {
 				id: doc.id
 			}));
 			dataInfo.length === 0 ? setPosts(null) : setPosts(dataInfo);
-			console.log(posts);
 			nextPage(posts, setPostToRender, page.start, page.end)
 			
 		});
 		return () => subscribeToData();
-	}, [posts]);
+	}, []);
 
 	
 
@@ -48,21 +49,13 @@ const Home = () => {
 					);
 				})}
 			</StyledRow>
-			<div>1</div>
-			<button onClick={() => nextPage(posts, setPostToRender,  page.start, page.end, setPage)}>Next</button>
+			<PaginationController/>
 		</StyledMain>
 	);
 };
 
 const nextPage = (posts, setPostToRender, start, end, setPage) => {
-	if(end <= 18) setPostToRender(posts.slice(start, end))
-	else {
-		setPage({
-			start: start +18,
-			end: end + 18
-		})
-		setPostToRender(posts.slice(start, end))
-	}
+	setPostToRender(posts.slice(start, end))
 };
 
 export default Home;
