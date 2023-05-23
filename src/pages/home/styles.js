@@ -12,6 +12,7 @@ const StyledRow = styled.div`
 	justify-content: space-between;
 	grid-template-rows: repeat(3, 1fr);
 	gap: 4rem 0;
+	margin-bottom: 6rem;
 `;
 
 export { StyledMain, StyledRow };

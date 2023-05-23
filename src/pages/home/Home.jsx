@@ -23,11 +23,12 @@ const Home = () => {
 				id: doc.id
 			}));
 			dataInfo.length === 0 ? setPosts(null) : setPosts(dataInfo);
-			dataInfo.length > 0 && nextPage(posts, setPostToRender, page.start, page.end)
+			console.log(posts);
+			nextPage(posts, setPostToRender, page.start, page.end)
 			
 		});
 		return () => subscribeToData();
-	}, []);
+	}, [posts]);
 
 	
 
@@ -47,14 +48,21 @@ const Home = () => {
 					);
 				})}
 			</StyledRow>
-			{posts.length > 18 && <div>1</div>}
-			<button onClick={() => nextPage(posts, setPostToRender)}>Next</button>
+			<div>1</div>
+			<button onClick={() => nextPage(posts, setPostToRender,  page.start, page.end, setPage)}>Next</button>
 		</StyledMain>
 	);
 };
 
-const nextPage = (posts, setPostToRender, start, end) => {
-	setPostToRender(posts.slice(start, end));
+const nextPage = (posts, setPostToRender, start, end, setPage) => {
+	if(end <= 18) setPostToRender(posts.slice(start, end))
+	else {
+		setPage({
+			start: start +18,
+			end: end + 18
+		})
+		setPostToRender(posts.slice(start, end))
+	}
 };
 
 export default Home;
