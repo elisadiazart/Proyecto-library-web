@@ -1,4 +1,4 @@
-import { useContext, } from 'react';
+import { useContext } from 'react';
 import {
 	StyledMain,
 	StyledTitle,
@@ -33,7 +33,7 @@ const SignIn = () => {
 			<StyledText>
 				Bienvenid@ a Lectus tu web de lecturas, donde descubriras tu proxima
 				lectura, podras hacer un seguimiento de estas o conectar con la
-				comunidad
+				comunidad.
 			</StyledText>
 			<StyledForm onSubmit={handleSubmit(onSubmit)}>
 				<StyledInputContainer>

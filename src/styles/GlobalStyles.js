@@ -31,26 +31,26 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: "Cygre Semibold";
-    src: url("/public/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-SemiBold.ttf");
+    src: url("/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-SemiBold.ttf");
   }
 
   @font-face {
     font-family: "Cygre Book";
-    src: url("/public/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-Book.ttf");
+    src: url("/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-Book.ttf");
   }
 
   @font-face {
     font-family: "Cygre Regular";
-    src: url("/public/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-Regular.ttf");
+    src: url("/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-Regular.ttf");
   }
   @font-face {
     font-family: "Cygre Medium Italic";
-    src: url("/public/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-MediumIt.ttf");
+    src: url("/Fonts/Package 1 - Cygre Default Full (.ttf)/Cygre-MediumIt.ttf");
   }
 
   @font-face {
     font-family: "Fungis Bold";
-    src: url("/public/Fonts/FUNGIS-1/fonts/OpenType-TT/FUNGIS Bold.ttf");
+    src: url("/Fonts/FUNGIS-1/fonts/OpenType-TT/FUNGIS Bold.ttf");
   }
 `;
 

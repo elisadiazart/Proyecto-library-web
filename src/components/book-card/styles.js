@@ -54,6 +54,7 @@ const StyledCover = styled.img`
 const StyledBookContainer = styled.div`
 	width: 150px;
 	height: 230px;
+	position: relative;
 `;
 
 const StyledButton = styled.button`

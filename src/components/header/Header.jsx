@@ -29,12 +29,12 @@ const Header = () => {
 		<StyledHeader>
 			<StyledContainer>
 				<StyledLogo onClick={() => navigate('/')}>
-					<StyledLogoImage src='public/Logo.svg' alt='Logo Lectus' />
+					<StyledLogoImage src='/Logo.svg' alt='Logo Lectus' />
 					<StyledH1>LectUs</StyledH1>
 				</StyledLogo>
 				<StyledNav>
 					<StyledForm>
-						<StyledSearchIcon src='public/search.svg' alt='' />
+						<StyledSearchIcon src='/search.svg' alt='' />
 						<StyledSearch type='text' placeholder='Buscar lectura...' />
 					</StyledForm>
 					<StyledUl>

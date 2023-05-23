@@ -76,10 +76,11 @@ const StyledButton = styled.button`
 	width: 100%;
 	background-color: ${COLORS.yellow};
 	border: none;
-	padding: 0.8rem 1rem;
+	padding: 0.6rem 1rem;
 	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;
 	cursor: pointer;
+	border-radius: 50px;
 
 	&:hover {
 		background-color: black;
@@ -96,12 +97,14 @@ const StyledButtonGoogle = styled.button`
 	gap: 0.5rem;
 	background-color: ${COLORS.yellow};
 	border: none;
-	padding: 0.8rem 5.9rem;
+	padding: 0.6rem 5.9rem;
 	text-transform: uppercase;
 	align-items: center;
 	margin: 1rem auto;
 	font-family: 'Poppins', sans-serif;
 	cursor: pointer;
+
+	border-radius: 50px;
 	&:hover {
 		background-color: black;
 		color: white;
@@ -116,7 +119,7 @@ const StyledError = styled.p`
 	font-size: 0.8rem;
 	font-family: 'Poppins', sans-serif;
 	color: ${COLORS.darkYellow};
-`
+`;
 
 export {
 	StyledMain,

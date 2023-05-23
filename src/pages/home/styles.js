@@ -1,18 +1,25 @@
 import styled from 'styled-components';
 
 const StyledMain = styled.main`
-	width: 1000px;
 	margin: auto;
 	margin-top: 4rem;
+	width: 500px;
+	@media screen and (min-width: 1024px) {
+		width: 1000px;
+	}
 `;
 
 const StyledRow = styled.div`
 	display: grid;
-	grid-template-columns: repeat(6, 150px);
+	grid-template-columns: repeat(3, 150px);
+	grid-template-rows: repeat(6, 1fr);
 	justify-content: space-between;
-	grid-template-rows: repeat(3, 1fr);
 	gap: 4rem 0;
 	margin-bottom: 6rem;
+	@media screen and (min-width: 1024px) {
+		grid-template-columns: repeat(6, 150px);
+		grid-template-rows: repeat(3, 1fr);
+	}
 `;
 
 export { StyledMain, StyledRow };

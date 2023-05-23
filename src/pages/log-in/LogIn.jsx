@@ -18,7 +18,7 @@ import { AuthContext } from '../../contexts/auth.context';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FORM_VALIDATIONS } from '../../constants/form-validations/formValidations';
-import { GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../config/firebase.config.js';
 
 const LogIn = () => {
@@ -37,7 +37,7 @@ const LogIn = () => {
 				<StyledText>
 					Bienvenid@ a Lectus tu web de lecturas, donde descubriras tu proxima
 					lectura, podras hacer un seguimiento de estas o conectar con la
-					comunidad
+					comunidad.
 				</StyledText>
 				<StyledForm onSubmit={handleSubmit(onSubmit)}>
 					<StyledInputContainer>
@@ -95,16 +95,15 @@ const onSubmit = (data, e) => {
 	console.log(e);
 };
 
-
 const loginWithGoogle = async () => {
-	const provider = new GoogleAuthProvider()
-	try{
-		const result = await signInWithPopup(auth, provider)
-		const credential = GoogleAuthProvider.credentialFromResult(result)
+	const provider = new GoogleAuthProvider();
+	try {
+		const result = await signInWithPopup(auth, provider);
+		const credential = GoogleAuthProvider.credentialFromResult(result);
 		console.log(credential);
-	}catch (err){
+	} catch (err) {
 		console.log(err);
 	}
-}
+};
 
 export default LogIn;

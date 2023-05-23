@@ -1,7 +1,11 @@
-import { StyledButton } from "./styles"
+import { StyledButton } from './styles';
 
-const OutlineButton = ({text, handleClick}) => {
-    return <StyledButton onClick={handleClick}>{text}</StyledButton>
-}
+const OutlineButton = ({ text, handleClick, disabled }) => {
+	return (
+		<StyledButton disabled={disabled} onClick={handleClick}>
+			{text}
+		</StyledButton>
+	);
+};
 
-export default OutlineButton
+export default OutlineButton;

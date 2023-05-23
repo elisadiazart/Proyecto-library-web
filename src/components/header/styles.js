@@ -20,12 +20,18 @@ const StyledHeader = styled.header`
 `;
 
 const StyledContainer = styled.div`
-	width: 1000px;
 	margin: auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 2rem 0;
+	@media screen and (min-width: 640px) {
+		width: 700px;
+		align-items: flex-start;
+	}
+	@media screen and (min-width: 1024px) {
+		width: 1000px;
+	}
 `;
 
 const StyledUl = styled.ul`
@@ -35,19 +41,14 @@ const StyledUl = styled.ul`
 
 const StyledNav = styled.nav`
 	display: flex;
+	flex-direction: column;
 	gap: 1.5rem;
-	align-items: center;
-`;
-
-const StyledSearch = styled.input`
-	border: 0;
-	border-radius: 50px;
-	background-color: transparent;
-	font-family: 'Arimo', sans-serif;
-	height: 100%;
-
-	&:focus {
-		outline: none;
+	align-items: flex-end;
+	@media screen and (min-width: 1024px) {
+		display: flex;
+		gap: 1.5rem;
+		flex-direction: row;
+		align-items: center;
 	}
 `;
 
@@ -60,6 +61,18 @@ const StyledForm = styled.form`
 	background-color: ${COLORS.bgColor};
 	align-items: center;
 	gap: 1rem;
+`;
+
+const StyledSearch = styled.input`
+	border: 0;
+	border-radius: 50px;
+	background-color: transparent;
+	font-family: 'Arimo', sans-serif;
+	height: 100%;
+
+	&:focus {
+		outline: none;
+	}
 `;
 
 const StyledSearchIcon = styled.img`
