@@ -18,7 +18,7 @@ const StyledRow = styled.div`
 	margin-bottom: 6rem;
 	@media screen and (min-width: 1024px) {
 		grid-template-columns: repeat(6, 150px);
-		grid-template-rows: repeat(3, 1fr);
+		grid-template-rows: repeat(2, 1fr);
 	}
 `;
 

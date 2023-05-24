@@ -10,7 +10,7 @@ import PaginationController from '../../components/pagination-controller/Paginat
 import { BOOKS } from '../../constants/libros de prueba de caca/librosdeKK';
 
 const Home = () => {
-	const booksPerPage = 18;
+	const booksPerPage = 12;
 	const [currentPage, setCurrentPage] = useState(0);
 	const [posts, setPosts] = useState([]);
 	const { currentUser } = useContext(AuthContext);

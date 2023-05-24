@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import OptionsAdd from '../../components/options-add/OptionsAdd';
 import Text from '../../components/text/Text';
 
 const BookPage = () => {
@@ -9,7 +8,6 @@ const BookPage = () => {
 			<h1>{params.id}</h1>
 			<div>
 				<img src='' alt='' />
-				<OptionsAdd />
 			</div>
 			<div>
 				<h3>saga</h3>
