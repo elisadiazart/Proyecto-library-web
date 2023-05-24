@@ -15,26 +15,34 @@ import {
 	StyledError
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FORM_VALIDATIONS } from '../../constants/form-validations/formValidations';
+import {
+	createUserWithEmailAndPassword,
+	GoogleAuthProvider,
+	signInWithPopup
+} from 'firebase/auth';
+import { auth } from '../../config/firebase.config.js';
 
 const SignIn = () => {
 	const navigate = useNavigate();
-	const { currentUser, setCurrentUser } = useContext(AuthContext);
+	const { currentUser } = useContext(AuthContext);
 	const {
 		handleSubmit,
 		register,
 		formState: { errors }
 	} = useForm({ mode: 'onBlur' });
+
+	if (currentUser) return <Navigate to='/' />;
+
 	return (
 		<StyledMain>
 			<StyledTitle>Sign in</StyledTitle>
 			<StyledText>
 				Bienvenid@ a Lectus tu web de lecturas, donde descubriras tu proxima
 				lectura, podras hacer un seguimiento de estas o conectar con la
-				comunidad.
-				Registrate para disfrutar de toda la web y sus ventajas.
+				comunidad. Registrate para disfrutar de toda la web y sus ventajas.
 			</StyledText>
 			<StyledForm onSubmit={handleSubmit(onSubmit)}>
 				<StyledInputContainer>
@@ -77,7 +85,7 @@ const SignIn = () => {
 				</StyledTextSignIn>
 				<StyledButton>Sign in</StyledButton>
 			</StyledForm>
-			<StyledButtonGoogle>
+			<StyledButtonGoogle onClick={() => signinWithGoogle(navigate)}>
 				Sign in with google
 				<StyledGoogleIcon src='/Google.svg' alt='' />
 			</StyledButtonGoogle>
@@ -85,9 +93,26 @@ const SignIn = () => {
 	);
 };
 
-const onSubmit = (data, e) => {
-	console.log(data);
-	console.log(e);
+const onSubmit = async data => {
+	const { email, password } = data;
+	console.log(email);
+	try {
+		await createUserWithEmailAndPassword(auth, email, password);
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+const signinWithGoogle = async navigate => {
+	const provider = new GoogleAuthProvider();
+	try {
+		const result = await signInWithPopup(auth, provider);
+		const credential = GoogleAuthProvider.credentialFromResult(result);
+		console.log(credential);
+		navigate('/');
+	} catch (err) {
+		console.log(err);
+	}
 };
 
 export default SignIn;

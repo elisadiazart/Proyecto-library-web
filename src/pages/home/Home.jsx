@@ -1,26 +1,28 @@
 import { useContext, useEffect, useState } from 'react';
 import { blogCollectionReference } from '../../config/firebase.config';
-
-import { AuthContext } from '../../contexts/auth.context';
 import { onSnapshot } from 'firebase/firestore';
 import { StyledMain, StyledRow } from './styles';
 import SectionTitle from '../../components/section-title/SectionTitle';
 import BookCard from '../../components/book-card/BookCard';
 import PaginationController from '../../components/pagination-controller/PaginationController';
 import { BOOKS } from '../../constants/libros de prueba de caca/librosdeKK';
+import { SearchContext } from '../../contexts/search.context';
 
 const Home = () => {
 	const booksPerPage = 12;
 	const [currentPage, setCurrentPage] = useState(0);
-	const [posts, setPosts] = useState([]);
-	const { currentUser } = useContext(AuthContext);
+	const [books, setBooks] = useState([]);
+	const [booksToRender, setBooksToRender] = useState([]);
+	const { search } = useContext(SearchContext);
 
-	const dataToRender = posts.slice(
+	const dataToRender = booksToRender.slice(
 		currentPage * booksPerPage,
 		(currentPage + 1) * booksPerPage
 	);
 
-
+	useEffect(() => {
+		filterData(books, search, setBooksToRender);
+	}, [search]);
 
 	useEffect(() => {
 		const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
@@ -28,7 +30,8 @@ const Home = () => {
 				...doc.data(),
 				id: doc.id
 			}));
-			dataInfo.length === 0 ? setPosts(null) : setPosts(dataInfo);
+			dataInfo.length === 0 ? setBooks(null) : setBooks(dataInfo);
+			setBooksToRender(dataInfo);
 		});
 		return () => subscribeToData();
 	}, []);
@@ -58,6 +61,13 @@ const Home = () => {
 			/>
 		</StyledMain>
 	);
+};
+
+const filterData = (books, search, setBooksToRender) => {
+	const filteredData = books.filter(post =>
+		post.name.toLowerCase().includes(search.toLowerCase())
+	);
+	setBooksToRender(filteredData);
 };
 
 const nextPage = (setCurrentPage, currentPage) => {

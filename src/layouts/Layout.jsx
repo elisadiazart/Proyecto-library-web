@@ -4,12 +4,14 @@ import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 
 const Layout = () => {
-	const { currentUser, setCurrentUser } = useContext(AuthContext);
-
+	const { currentUser } = useContext(AuthContext);
 	return (
 		<>
 			<Header />
-			<Outlet />
+			<div>
+				<Outlet />
+				{currentUser && <div>Hola</div>}
+			</div>
 		</>
 	);
 };

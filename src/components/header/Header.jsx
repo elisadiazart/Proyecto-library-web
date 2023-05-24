@@ -20,22 +20,28 @@ import { AuthContext } from '../../contexts/auth.context';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { SearchContext } from '../../contexts/search.context';
 
 const Header = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
+	const { setSearch } = useContext(SearchContext);
 
 	return (
 		<StyledHeader>
 			<StyledContainer>
 				<StyledLogo onClick={() => navigate('/')}>
-					<StyledLogoImage src='public/Logo.svg' alt='Logo Lectus' />
+					<StyledLogoImage src='/Logo.svg' alt='Logo Lectus' />
 					<StyledH1>LectUs</StyledH1>
 				</StyledLogo>
 				<StyledNav>
 					<StyledForm>
 						<StyledSearchIcon src='/search.svg' alt='' />
-						<StyledSearch type='text' placeholder='Buscar lectura...' />
+						<StyledSearch
+							type='text'
+							placeholder='Buscar por título...'
+							onChange={e => setSearch(e.target.value)}
+						/>
 					</StyledForm>
 					<StyledUl>
 						{currentUser ? (
