@@ -19,7 +19,7 @@ const StyledMain = styled.main`
 const StyledImageContainer = styled.div``;
 
 const StyledDataContainer = styled.div`
-	width: 400px;
+	width: 320px;
 	margin-top: 2rem;
 `;
 

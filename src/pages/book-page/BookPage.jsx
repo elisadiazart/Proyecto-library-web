@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Text from '../../components/text/Text';
 import { doc, getDoc } from 'firebase/firestore';
 import { blogCollectionReference } from '../../config/firebase.config';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
 	StyledImage,
 	StyledMain,
@@ -18,12 +18,14 @@ import OptionsAdd from '../../components/options-add/OptionsAdd';
 import OutlineButton from '../../components/outline-button/OutlineButton';
 import { v4 } from 'uuid';
 import { removeAccents } from '../../hooks/removeAccents';
+import { AuthContext } from '../../contexts/auth.context';
 
 const BookPage = () => {
 	const params = useParams();
 	const [book, setBook] = useState([]);
 	const [options, setOptions] = useState(false);
 	const navigate = useNavigate();
+	const { currentUser } = useContext(AuthContext);
 
 	useEffect(() => {
 		getPostById(params.id, setBook);
@@ -34,11 +36,11 @@ const BookPage = () => {
 			<StyledMain>
 				<StyledImageContainer>
 					<StyledImage src={book.image} alt={book.name} />
-					<StyledButton onClick={() => setOptions(!options)}>
+					<StyledButton onClick={() => {currentUser ? setOptions(!options) : navigate('/sign-in')}}>
 						Añadir a...
 					</StyledButton>
 					{options && <OptionsAdd />}
-					<StyledSmallTitle>Géneros</StyledSmallTitle>
+					<StyledSmallTitle>Géneros:</StyledSmallTitle>
 					<StyledGenres>
 						{book.genres.map(genre => {
 							return (
