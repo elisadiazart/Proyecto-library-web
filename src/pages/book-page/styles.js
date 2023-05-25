@@ -11,8 +11,8 @@ const StyledMain = styled.main`
 	margin: auto;
 	display: flex;
 	align-items: flex-start;
-	gap: 3rem;
-	justify-content: flex-start;
+	gap: 6rem;
+	justify-content: center;
 	margin-top: 5rem;
 `;
 
@@ -49,6 +49,23 @@ const StyledTitle = styled.h2`
 	margin-bottom: 1rem;
 `;
 
+const StyledSmallTitle = styled.h3`
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	font-size: 0.9rem;
+	font-weight: 500;
+	font-style: italic;
+	margin: 2rem 0 0.5rem 0;
+`;
+
+const StyledGenres = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	width: 250px;
+	gap: 0.5rem 0.2rem;
+	margin-top: 1rem;
+`;
+
 export {
 	StyledImage,
 	StyledMain,
@@ -56,5 +73,7 @@ export {
 	StyledDataContainer,
 	StyledSinopsis,
 	StyledButton,
-	StyledTitle
+	StyledTitle,
+	StyledSmallTitle,
+	StyledGenres
 };

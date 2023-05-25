@@ -46,12 +46,12 @@ const Header = () => {
 					<StyledUl>
 						{currentUser ? (
 							<>
-								<StyledLi>
+								{/* <StyledLi>
 									<NavLink href=''>Calendario</NavLink>
 								</StyledLi>
 								<StyledLi>
 									<NavLink href=''>Siguiendo</NavLink>
-								</StyledLi>
+								</StyledLi> */}
 								<StyledProfileDiv>
 									<StyledUserIcon src='' alt='' />
 									<StyledLogOut>

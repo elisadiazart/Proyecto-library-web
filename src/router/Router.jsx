@@ -4,6 +4,7 @@ import SignIn from '../pages/sign-in/SignIn';
 import LogIn from '../pages/log-in/LogIn';
 import Home from '../pages/home/Home';
 import BookPage from '../pages/book-page/BookPage';
+import BookPerGenre from '../pages/book-per-genre/BookPerGenre';
 
 const Router = () => {
 	return (
@@ -13,6 +14,7 @@ const Router = () => {
 				<Route path='sign-in' element={<SignIn />} />
 				<Route path='log-in' element={<LogIn />} />
 				<Route path='/book/:id' element={<BookPage />} />
+				<Route path='/:genre' element={<BookPerGenre />} />
 			</Route>
 		</Routes>
 	);

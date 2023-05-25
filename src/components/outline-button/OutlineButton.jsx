@@ -1,8 +1,8 @@
 import { StyledButton } from './styles';
 
-const OutlineButton = ({ text, handleClick, disabled }) => {
+const OutlineButton = ({ text, handleClick, disabled, variant }) => {
 	return (
-		<StyledButton disabled={disabled} onClick={handleClick}>
+		<StyledButton disabled={disabled} onClick={handleClick} variant={variant}>
 			{text}
 		</StyledButton>
 	);

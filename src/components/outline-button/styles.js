@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { COLORS } from '../../constants/colors';
 
 const StyledButton = styled.button`
@@ -10,6 +10,18 @@ const StyledButton = styled.button`
 	font-weight: 600;
 	text-transform: uppercase;
 	cursor: pointer;
+
+	${props => {
+		switch (props.variant) {
+			case 'tag':
+				return css`
+					text-transform: none;
+					font-weight: 400;
+					font-size: 0.8rem;
+				`;
+		}
+	}}
+
 	&:hover {
 		background-color: ${COLORS.yellow};
 		text-decoration: underline;
