@@ -6,11 +6,19 @@ import { StyledMain, StyledRow } from './styles';
 import SectionTitle from '../../components/section-title/SectionTitle';
 import { useParams } from 'react-router-dom';
 import { removeAccents } from '../../hooks/removeAccents';
+import PaginationController from '../../components/pagination-controller/PaginationController';
 
 const BookPerGenre = () => {
+	const booksPerPage = 12;
+	const [currentPage, setCurrentPage] = useState(0);
 	const [books, setBooks] = useState([]);
 	const params = useParams();
 	const [booksFiltered, setBooksFiltered] = useState([]);
+
+	const dataToRender = booksFiltered.slice(
+		currentPage * booksPerPage,
+		(currentPage + 1) * booksPerPage
+	);
 
 	useEffect(() => {
 		const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
@@ -31,7 +39,7 @@ const BookPerGenre = () => {
 		<StyledMain>
 			<SectionTitle text={params.genre} />
 			<StyledRow>
-				{booksFiltered.map(post => {
+				{dataToRender.map(post => {
 					return (
 						<BookCard
 							key={post.id}
@@ -43,6 +51,13 @@ const BookPerGenre = () => {
 					);
 				})}
 			</StyledRow>
+			<PaginationController
+				handleClickNext={() => nextPage(setCurrentPage, currentPage)}
+				handleClickPrevious={() => previousPage(setCurrentPage, currentPage)}
+				currentPage={currentPage + 1}
+				disabledNext={(currentPage + 1) * booksPerPage >= booksFiltered.length}
+				disabledPrevious={currentPage === 0}
+			/>
 		</StyledMain>
 	);
 };
@@ -63,6 +78,14 @@ const getBooksByGenre = async (genre, setBooksFiltered, books) => {
 	);
 
 	setBooksFiltered(filteredBooks);
+};
+
+const nextPage = (setCurrentPage, currentPage) => {
+	setCurrentPage(currentPage + 1);
+};
+
+const previousPage = (setCurrentPage, currentPage) => {
+	setCurrentPage(currentPage - 1);
 };
 
 export default BookPerGenre;

@@ -67,7 +67,8 @@ const StyledSearch = styled.input`
 	border: 0;
 	border-radius: 50px;
 	background-color: transparent;
-	font-family: 'Arimo', sans-serif;
+	font-family: 'Poppins', sans-serif;
+	font-size: 0.8rem;
 	height: 100%;
 
 	&:focus {
