@@ -6,6 +6,7 @@ const StyledTitle = styled.h2`
 	text-align: center;
 	margin-bottom: 2rem;
 	font-size: 1.3rem;
+	font-weight: 500;
 `;
 
 export { StyledTitle };

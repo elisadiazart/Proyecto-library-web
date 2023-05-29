@@ -31,7 +31,7 @@ const BookCard = ({ id, image, author, name }) => {
 			>
 				Añadir a...
 			</StyledButton>
-			{options && <OptionsAdd id={id} />}
+			{options && <OptionsAdd id={id} setOptions={setOptions} />}
 		</StyledBookContainer>
 	);
 };

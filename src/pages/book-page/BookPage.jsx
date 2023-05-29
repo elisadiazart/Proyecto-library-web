@@ -39,7 +39,7 @@ const BookPage = () => {
 					<StyledButton onClick={() => {currentUser ? setOptions(!options) : navigate('/sign-in')}}>
 						Añadir a...
 					</StyledButton>
-					{options && <OptionsAdd />}
+					{options && <OptionsAdd setOptions={setOptions} />}
 					<StyledSmallTitle>Géneros:</StyledSmallTitle>
 					<StyledGenres>
 						{book.genres.map(genre => {
