@@ -9,10 +9,8 @@ export const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const unsuscribe = auth.onAuthStateChanged(user => {
 			if (user) {
-				console.log('Usuario Autentificado', currentUser);
 				getUserInfo(user, setCurrentUser);
 			} else {
-				console.log('Usuario no autentificado');
 				setCurrentUser(null);
 			}
 		});
@@ -37,6 +35,6 @@ const getUserInfo = async (user, setCurrentUser) => {
 
 		setCurrentUser({ ...user, ...userInfo });
 	} catch (err) {
-		console.log(err);
+		setCurrentUser(null);
 	}
 };

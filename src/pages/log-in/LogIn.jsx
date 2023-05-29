@@ -25,6 +25,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '../../config/firebase.config.js';
 import { FIREBASE_ERRORS } from '../../constants/firebaseErrors.js';
+import { createUserProfile } from '../../utils/createUserProfileGoogle.js';
 
 const LogIn = () => {
 	const navigate = useNavigate();
@@ -116,13 +117,11 @@ const onSubmit = async (data, setVerificationError) => {
 	}
 };
 
-const loginWithGoogle = async navigate => {
+const loginWithGoogle = async () => {
 	const provider = new GoogleAuthProvider();
 	try {
-		const result = await signInWithPopup(auth, provider);
-		const credential = GoogleAuthProvider.credentialFromResult(result);
-		console.log(credential);
-		navigate('/');
+		await signInWithPopup(auth, provider);
+		await createUserProfile(provider);
 	} catch (err) {
 		console.log(err);
 	}

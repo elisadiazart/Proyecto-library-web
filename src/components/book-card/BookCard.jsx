@@ -24,10 +24,14 @@ const BookCard = ({ id, image, author, name }) => {
 					<StyledAuthor>{author}</StyledAuthor>
 				</StyledData>
 			</StyledBook>
-			<StyledButton onClick={() => currentUser ? setOptions(!options) : navigate('/sign-in')}>
+			<StyledButton
+				onClick={() =>
+					currentUser ? setOptions(!options) : navigate('/sign-in')
+				}
+			>
 				Añadir a...
 			</StyledButton>
-			{options && <OptionsAdd />}
+			{options && <OptionsAdd id={id} />}
 		</StyledBookContainer>
 	);
 };

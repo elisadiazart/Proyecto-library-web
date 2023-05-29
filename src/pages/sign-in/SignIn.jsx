@@ -20,12 +20,12 @@ import { useForm } from 'react-hook-form';
 import { FORM_VALIDATIONS } from '../../constants/form-validations/formValidations';
 import {
 	createUserWithEmailAndPassword,
-	GoogleAuthProvider,
-	signInWithPopup
+	GoogleAuthProvider
 } from 'firebase/auth';
 import { auth, db } from '../../config/firebase.config.js';
 import { doc, setDoc } from 'firebase/firestore';
 import { FIREBASE_ERRORS } from '../../constants/firebaseErrors';
+import { createUserProfile } from '../../utils/createUserProfileGoogle';
 
 const SignIn = () => {
 	const navigate = useNavigate();
@@ -136,19 +136,7 @@ const signinWithGoogle = async setVerificationError => {
 	const provider = new GoogleAuthProvider();
 
 	try {
-		const result = await signInWithPopup(auth, provider);
-		const newUser = {
-			abandoned: [],
-			library: [],
-			profilePicture: '',
-			reading: [],
-			toRead: [],
-			userEmail: result.user.email,
-			newLists: []
-		};
-		GoogleAuthProvider.credentialFromResult(result);
-		console.log(result);
-		await setDoc(doc(db, 'users', result.user.uid), newUser);
+		await createUserProfile(provider);
 	} catch (err) {
 		setVerificationError(err.code);
 	}

@@ -20,6 +20,9 @@ import OutlineButton from '../../components/outline-button/OutlineButton';
 const UserProfile = () => {
 	const { currentUser } = useContext(AuthContext);
 	console.log(currentUser);
+
+	if (!currentUser) return <h1>Loading...</h1>;
+
 	return (
 		currentUser && (
 			<StyledMain>
@@ -71,7 +74,11 @@ const UserProfile = () => {
 					</div>
 				</StyledMainContent>
 				<StyledCurrentReadings>
-					{currentUser.reading.length === 0 && <StyledMessage>No has marcado ningún libro como &quot;leyendo&quot;</StyledMessage>}
+					{currentUser.reading.length === 0 && (
+						<StyledMessage>
+							No has marcado ningún libro como &quot;leyendo&quot;
+						</StyledMessage>
+					)}
 				</StyledCurrentReadings>
 			</StyledMain>
 		)
