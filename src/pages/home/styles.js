@@ -4,6 +4,7 @@ const StyledMain = styled.main`
 	margin: auto;
 	margin-top: 11rem;
 	width: 500px;
+	margin-bottom: 6rem;
 	@media screen and (min-width: 1024px) {
 		width: 1000px;
 	}
