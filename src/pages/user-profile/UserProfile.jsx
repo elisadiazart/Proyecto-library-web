@@ -12,7 +12,9 @@ import {
 	StyledShelfData,
 	StyledShelfBooks,
 	StyledCurrentReadings,
-	StyledMessage
+	StyledMessage,
+	StyledImageContainer,
+	StyledEmail
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
 import OutlineButton from '../../components/outline-button/OutlineButton';
@@ -28,12 +30,15 @@ const UserProfile = () => {
 			<StyledMain>
 				<StyledMainContent>
 					<StyledProfileContainer>
+						<StyledImageContainer>
 						{currentUser.profilePicture.length === 0 ? (
 							<StyledProfile src='/public/profile.jpeg' alt='profile' />
 						) : (
 							<StyledProfile src={currentUser.profilePicture} alt='profile' />
 						)}
 						<OutlineButton text='cambiar foto' />
+						</StyledImageContainer>
+						<StyledEmail>{currentUser.email}</StyledEmail>
 					</StyledProfileContainer>
 					{!currentUser.yearChallenge ? (
 						<StyledChallenge>

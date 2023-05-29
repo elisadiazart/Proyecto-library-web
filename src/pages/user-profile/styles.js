@@ -36,7 +36,7 @@ const StyledProfileContainer = styled.div`
 	display: flex;
 	align-items: center;
 	margin-bottom: 1rem;
-	gap: 1rem;
+	justify-content: space-between;
 `;
 
 const StyledText = styled.p`
@@ -98,6 +98,16 @@ const StyledMessage = styled.p`
 	font-size: 0.9rem;
 `;
 
+const StyledImageContainer = styled.div`
+	display: flex;
+	gap: 1rem;
+`
+
+const StyledEmail = styled.p`
+	font-family: 'Poppins', sans-serif;
+	font-size: .8rem
+`
+
 export {
 	StyledMain,
 	StyledChallenge,
@@ -110,5 +120,7 @@ export {
 	StyledShelfData,
 	StyledShelfBooks,
 	StyledCurrentReadings,
-	StyledMessage
+	StyledMessage,
+	StyledImageContainer,
+	StyledEmail
 };
