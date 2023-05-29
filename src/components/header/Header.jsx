@@ -32,7 +32,7 @@ const Header = () => {
 		<StyledHeader>
 			<StyledContainer>
 				<StyledLogo onClick={() => navigate('/')}>
-					<StyledLogoImage src='/Logo.svg' alt='Logo Lectus' />
+					<StyledLogoImage src='/logo.svg' alt='Logo Lectus' />
 					<StyledH1>LectUs</StyledH1>
 				</StyledLogo>
 				<StyledNav>

@@ -10,7 +10,9 @@ import {
 	StyledText,
 	StyledShelfTitle,
 	StyledShelfData,
-	StyledShelfBooks
+	StyledShelfBooks,
+	StyledCurrentReadings,
+	StyledMessage
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
 import OutlineButton from '../../components/outline-button/OutlineButton';
@@ -59,15 +61,6 @@ const UserProfile = () => {
 						</div>
 						<div>
 							<StyledShelfData>
-								<StyledShelfTitle>Leyendo</StyledShelfTitle>
-								<StyledShelfTitle>
-									{currentUser.reading.length}
-								</StyledShelfTitle>
-							</StyledShelfData>
-							<StyledShelfBooks></StyledShelfBooks>
-						</div>
-						<div>
-							<StyledShelfData>
 								<StyledShelfTitle>Abandonados</StyledShelfTitle>
 								<StyledShelfTitle>
 									{currentUser.abandoned.length}
@@ -77,7 +70,9 @@ const UserProfile = () => {
 						</div>
 					</div>
 				</StyledMainContent>
-				<div></div>
+				<StyledCurrentReadings>
+					{currentUser.reading.length === 0 && <StyledMessage>No has marcado ningún libro como &apos;leyendo&apos;</StyledMessage>}
+				</StyledCurrentReadings>
 			</StyledMain>
 		)
 	);

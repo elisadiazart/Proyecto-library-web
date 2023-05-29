@@ -17,6 +17,10 @@ const StyledLogoImage = styled.img`
 
 const StyledHeader = styled.header`
 	background-color: ${COLORS.yellow};
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
 `;
 
 const StyledContainer = styled.div`

@@ -4,8 +4,10 @@ import { COLORS } from '../../constants/colors';
 const StyledMain = styled.main`
 	width: 1000px;
 	margin: auto;
-	margin-top: 2rem;
+	margin-top: 9rem;
 	display: flex;
+	justify-content: space-between;
+	position: relative;
 `;
 
 const StyledChallenge = styled.div`
@@ -75,6 +77,26 @@ const StyledShelfBooks = styled.div`
 	height: 150px;
 `;
 
+const StyledCurrentReadings = styled.div`
+	width: 300px;
+	height: 640px;
+	background-color: #eae5d9;
+	border-radius: 22px;
+	margin-top: 3.4rem;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+`;
+
+const StyledMessage = styled.p`
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	width: 200px;
+	text-align: center;
+	margin: auto;
+	font-weight: 600;
+`;
+
 export {
 	StyledMain,
 	StyledChallenge,
@@ -85,5 +107,7 @@ export {
 	StyledButton,
 	StyledShelfTitle,
 	StyledShelfData,
-	StyledShelfBooks
+	StyledShelfBooks,
+	StyledCurrentReadings,
+	StyledMessage
 };

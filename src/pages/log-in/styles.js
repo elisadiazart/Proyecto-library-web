@@ -4,7 +4,7 @@ import { COLORS } from '../../constants/colors';
 const StyledMain = styled.main`
 	width: 550px;
 	margin: auto;
-	margin-top: 6rem;
+	margin-top: 12rem;
 `;
 
 const StyledTitle = styled.h2`
