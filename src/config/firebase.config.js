@@ -30,8 +30,9 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 export const blogCollectionReference = collection(db, 'books');
+export const usersCollectionReference = collection(db, 'users');
 
 export const storage = getStorage(app);

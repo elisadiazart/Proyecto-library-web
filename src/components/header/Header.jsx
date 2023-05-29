@@ -19,11 +19,12 @@ import {
 import { AuthContext } from '../../contexts/auth.context';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../contexts/search.context';
 
 const Header = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const { currentUser } = useContext(AuthContext);
 	const { setSearch } = useContext(SearchContext);
 
@@ -31,18 +32,20 @@ const Header = () => {
 		<StyledHeader>
 			<StyledContainer>
 				<StyledLogo onClick={() => navigate('/')}>
-					<StyledLogoImage src='/public/Logo.svg' alt='Logo Lectus' />
+					<StyledLogoImage src='/logo.svg' alt='Logo Lectus' />
 					<StyledH1>LectUs</StyledH1>
 				</StyledLogo>
 				<StyledNav>
-					<StyledForm>
-						<StyledSearchIcon src='/search.svg' alt='' />
-						<StyledSearch
-							type='text'
-							placeholder='Buscar por título...'
-							onChange={e => setSearch(e.target.value)}
-						/>
-					</StyledForm>
+					{location.pathname === '/' && (
+						<StyledForm>
+							<StyledSearchIcon src='/search.svg' alt='' />
+							<StyledSearch
+								type='text'
+								placeholder='Buscar por título...'
+								onChange={e => setSearch(e.target.value)}
+							/>
+						</StyledForm>
+					)}
 					<StyledUl>
 						{currentUser ? (
 							<>
@@ -53,9 +56,13 @@ const Header = () => {
 									<NavLink href=''>Siguiendo</NavLink>
 								</StyledLi> */}
 								<StyledProfileDiv>
-									<StyledUserIcon src='' alt='' />
+									<StyledUserIcon src='/profile.jpeg' alt='user' />
 									<StyledLogOut>
-										<StyledProfileOption>Perfil</StyledProfileOption>
+										<StyledProfileOption
+											onClick={() => navigate(`/user/${currentUser.uid}`)}
+										>
+											Perfil
+										</StyledProfileOption>
 										<StyledProfileOption
 											onClick={() => handleSignOut(navigate)}
 										>

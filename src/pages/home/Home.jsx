@@ -5,11 +5,10 @@ import { StyledMain, StyledRow } from './styles';
 import SectionTitle from '../../components/section-title/SectionTitle';
 import BookCard from '../../components/book-card/BookCard';
 import PaginationController from '../../components/pagination-controller/PaginationController';
-import { BOOKS } from '../../constants/libros de prueba de caca/librosdeKK';
 import { SearchContext } from '../../contexts/search.context';
 
 const Home = () => {
-	const booksPerPage = 12;
+	const booksPerPage = 18;
 	const [currentPage, setCurrentPage] = useState(0);
 	const [books, setBooks] = useState([]);
 	const [booksToRender, setBooksToRender] = useState([]);
@@ -56,7 +55,7 @@ const Home = () => {
 				handleClickNext={() => nextPage(setCurrentPage, currentPage)}
 				handleClickPrevious={() => previousPage(setCurrentPage, currentPage)}
 				currentPage={currentPage + 1}
-				disabledNext={(currentPage + 1) * booksPerPage >= BOOKS.length}
+				disabledNext={(currentPage + 1) * booksPerPage >= booksToRender.length}
 				disabledPrevious={currentPage === 0}
 			/>
 		</StyledMain>

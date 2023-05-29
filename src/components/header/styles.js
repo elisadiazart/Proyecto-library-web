@@ -17,6 +17,10 @@ const StyledLogoImage = styled.img`
 
 const StyledHeader = styled.header`
 	background-color: ${COLORS.yellow};
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
 `;
 
 const StyledContainer = styled.div`
@@ -67,7 +71,8 @@ const StyledSearch = styled.input`
 	border: 0;
 	border-radius: 50px;
 	background-color: transparent;
-	font-family: 'Arimo', sans-serif;
+	font-family: 'Poppins', sans-serif;
+	font-size: 0.8rem;
 	height: 100%;
 
 	&:focus {
@@ -100,10 +105,10 @@ const StyledLogOut = styled.div`
 	position: absolute;
 	color: white;
 	padding: 0.5rem;
-	width: 180px;
+	width: 150px;
 	opacity: 0;
-	transform: translateY(100%);
-	bottom: -0.2rem;
+	transform: translateX(-70%);
+	bottom: -240%;
 	text-transform: uppercase;
 	font-family: 'Poppins', sans-serif;
 	font-size: 0.88rem;

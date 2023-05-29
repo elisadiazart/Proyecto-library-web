@@ -13,7 +13,7 @@ const StyledMain = styled.main`
 	align-items: flex-start;
 	gap: 6rem;
 	justify-content: center;
-	margin-top: 5rem;
+	margin-top: 11rem;
 `;
 
 const StyledImageContainer = styled.div``;

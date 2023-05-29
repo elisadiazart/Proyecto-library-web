@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import {
 	StyledMain,
 	StyledTitle,
@@ -24,9 +24,12 @@ import {
 	signInWithPopup
 } from 'firebase/auth';
 import { auth } from '../../config/firebase.config.js';
+import { FIREBASE_ERRORS } from '../../constants/firebaseErrors.js';
+import { createUserProfile } from '../../utils/createUserProfileGoogle.js';
 
 const LogIn = () => {
 	const navigate = useNavigate();
+	const [verificationError, setVerificationError] = useState();
 	const { currentUser } = useContext(AuthContext);
 	const {
 		handleSubmit,
@@ -44,7 +47,11 @@ const LogIn = () => {
 				lectura, podras hacer un seguimiento de estas o conectar con la
 				comunidad.
 			</StyledText>
-			<StyledForm onSubmit={handleSubmit(onSubmit)}>
+			<StyledForm
+				onSubmit={handleSubmit(formData =>
+					onSubmit(formData, setVerificationError)
+				)}
+			>
 				<StyledInputContainer>
 					<StyledLabel htmlFor='email'>Email</StyledLabel>
 					<StyledInput
@@ -79,6 +86,11 @@ const LogIn = () => {
 				{errors.password && (
 					<StyledError>{errors.password.message}</StyledError>
 				)}
+				{verificationError && FIREBASE_ERRORS[verificationError] && (
+					<StyledError>
+						{FIREBASE_ERRORS[verificationError].message}
+					</StyledError>
+				)}
 				<StyledTextSignIn>
 					¿No tienes cuenta?{' '}
 					<StyledLogIn onClick={() => navigate('/sign-in')}>
@@ -95,22 +107,21 @@ const LogIn = () => {
 	);
 };
 
-const onSubmit = async data => {
+const onSubmit = async (data, setVerificationError) => {
 	const { email, password } = data;
 	try {
 		await signInWithEmailAndPassword(auth, email, password);
 	} catch (err) {
+		setVerificationError(err.code);
 		console.log(err);
 	}
 };
 
-const loginWithGoogle = async navigate => {
+const loginWithGoogle = async () => {
 	const provider = new GoogleAuthProvider();
 	try {
-		const result = await signInWithPopup(auth, provider);
-		const credential = GoogleAuthProvider.credentialFromResult(result);
-		console.log(credential);
-		navigate('/');
+		await signInWithPopup(auth, provider);
+		await createUserProfile(provider);
 	} catch (err) {
 		console.log(err);
 	}

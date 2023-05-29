@@ -15,7 +15,7 @@ const StyledRow = styled.div`
 
 const StyledMain = styled.main`
 	margin: auto;
-	margin-top: 4rem;
+	margin-top: 10rem;
 	width: 500px;
 	@media screen and (min-width: 1024px) {
 		width: 1000px;
