@@ -71,7 +71,7 @@ const UserProfile = () => {
 					</div>
 				</StyledMainContent>
 				<StyledCurrentReadings>
-					{currentUser.reading.length === 0 && <StyledMessage>No has marcado ningún libro como &apos;leyendo&apos;</StyledMessage>}
+					{currentUser.reading.length === 0 && <StyledMessage>No has marcado ningún libro como &quot;leyendo&quot;</StyledMessage>}
 				</StyledCurrentReadings>
 			</StyledMain>
 		)

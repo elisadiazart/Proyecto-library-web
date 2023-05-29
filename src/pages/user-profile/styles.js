@@ -91,10 +91,11 @@ const StyledCurrentReadings = styled.div`
 const StyledMessage = styled.p`
 	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;
-	width: 200px;
+	width: 150px;
 	text-align: center;
 	margin: auto;
-	font-weight: 600;
+	font-weight: 500;
+	font-size: 0.9rem;
 `;
 
 export {

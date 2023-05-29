@@ -105,10 +105,10 @@ const StyledLogOut = styled.div`
 	position: absolute;
 	color: white;
 	padding: 0.5rem;
-	width: 180px;
+	width: 150px;
 	opacity: 0;
-	transform: translateY(100%);
-	bottom: -0.2rem;
+	transform: translateX(-70%);
+	bottom: -240%;
 	text-transform: uppercase;
 	font-family: 'Poppins', sans-serif;
 	font-size: 0.88rem;
