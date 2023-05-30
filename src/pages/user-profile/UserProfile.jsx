@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import SectionTitle from '../../components/section-title/SectionTitle';
 import {
 	StyledButton,
@@ -14,16 +14,58 @@ import {
 	StyledCurrentReadings,
 	StyledMessage,
 	StyledImageContainer,
-	StyledEmail
+	StyledEmail,
+	StyledImageBook
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
 import OutlineButton from '../../components/outline-button/OutlineButton';
+import { onSnapshot } from 'firebase/firestore';
+import { blogCollectionReference, usersCollectionReference } from '../../config/firebase.config';
 
 const UserProfile = () => {
-	const { currentUser } = useContext(AuthContext);
-	console.log(currentUser);
+	const { currentUser, setCurrentUser} = useContext(AuthContext);
+	const [books, setBooks] = useState([]);
+	const [booksFilteredLibrary, setBooksFilteredLibrary] = useState([]);
+
+
+	useEffect(() => {
+		const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
+			const dataInfo = snapshot.docs.map(doc => ({
+				...doc.data(),
+				id: doc.id
+			}));
+			dataInfo.length === 0 ? setBooks(null) : setBooks(dataInfo);
+		});
+		return () => subscribeToData();
+	}, []);
+
+	useEffect(() => {
+		const subscribeToData = onSnapshot(usersCollectionReference, snapshot => {
+			const dataInfo = snapshot.docs.map(doc => ({
+				id: doc.id,
+				...doc.data()
+			}));
+
+			setCurrentUser({
+				...currentUser,
+				library: dataInfo[0].library,
+				toRead: dataInfo[0].toRead,
+				abandoned: dataInfo[0].abandoned
+			});
+
+			return () => subscribeToData();
+		});
+	}, []);
+
+	useEffect(() => {
+		if (currentUser) getBooksByIdLibrary( books, currentUser, setBooksFilteredLibrary, booksFilteredLibrary);
+	}, [books]);
 
 	if (!currentUser) return <h1>Loading...</h1>;
+
+	const booksPerShelf= 6
+
+	const libraryToRender= booksFilteredLibrary.slice(0, booksPerShelf - 1)
 
 	return (
 		currentUser && (
@@ -58,7 +100,11 @@ const UserProfile = () => {
 									{currentUser.library.length}
 								</StyledShelfTitle>
 							</StyledShelfData>
-							<StyledShelfBooks></StyledShelfBooks>
+							<StyledShelfBooks>
+								{!booksFilteredLibrary ? <h3>loading</h3> : libraryToRender.map(book =>{
+									return <StyledImageBook key={book.id} src={book.image}/>
+								}) }
+							</StyledShelfBooks>
 						</div>
 						<div>
 							<StyledShelfData>
@@ -88,6 +134,16 @@ const UserProfile = () => {
 			</StyledMain>
 		)
 	);
+};
+
+
+
+const getBooksByIdLibrary = async (books, currentUser, setBooksFilteredLibrary) => {
+	console.log(books);
+	const filteredBook = books.filter(book =>
+		currentUser.library.includes(book.id)
+	)
+	setBooksFilteredLibrary(filteredBook)
 };
 
 export default UserProfile;

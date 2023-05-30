@@ -74,7 +74,10 @@ const StyledShelfData = styled.div`
 `;
 
 const StyledShelfBooks = styled.div`
+	display: flex;
 	height: 150px;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
 `;
 
 const StyledCurrentReadings = styled.div`
@@ -101,12 +104,17 @@ const StyledMessage = styled.p`
 const StyledImageContainer = styled.div`
 	display: flex;
 	gap: 1rem;
-`
+`;
 
 const StyledEmail = styled.p`
 	font-family: 'Poppins', sans-serif;
-	font-size: .8rem
-`
+	font-size: 0.8rem;
+`;
+
+const StyledImageBook = styled.img`
+	width: 100px;
+	height: 150px;
+`;
 
 export {
 	StyledMain,
@@ -122,5 +130,6 @@ export {
 	StyledCurrentReadings,
 	StyledMessage,
 	StyledImageContainer,
-	StyledEmail
+	StyledEmail,
+	StyledImageBook
 };

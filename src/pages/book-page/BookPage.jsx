@@ -30,7 +30,6 @@ const BookPage = () => {
 	useEffect(() => {
 		getPostById(params.id, setBook);
 	}, []);
-
 	if (book.length !== 0)
 		return (
 			<StyledMain>
@@ -39,7 +38,7 @@ const BookPage = () => {
 					<StyledButton onClick={() => {currentUser ? setOptions(!options) : navigate('/sign-in')}}>
 						Añadir a...
 					</StyledButton>
-					{options && <OptionsAdd setOptions={setOptions} />}
+					{options && <OptionsAdd id={params.id} setOptions={setOptions} />}
 					<StyledSmallTitle>Géneros:</StyledSmallTitle>
 					<StyledGenres>
 						{book.genres.map(genre => {

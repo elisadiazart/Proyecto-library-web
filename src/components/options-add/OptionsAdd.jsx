@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { StyledOption, StyledOptions } from './styles';
 import { useNavigate } from 'react-router-dom';
 
