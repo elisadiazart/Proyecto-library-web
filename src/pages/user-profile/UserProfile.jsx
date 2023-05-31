@@ -18,7 +18,9 @@ import {
 	StyledImageBook,
 	StyledReadingCard,
 	StyledImageReading,
-	StyledButtonBlack
+	StyledButtonBlack,
+	StyledMoreBooks,
+	StyledShelfBooksContainer
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
 import OutlineButton from '../../components/outline-button/OutlineButton';
@@ -118,30 +120,36 @@ const UserProfile = () => {
 									{currentUser.library.length}
 								</StyledShelfTitle>
 							</StyledShelfData>
-							<StyledShelfBooks>
+							<StyledShelfBooksContainer>
 								{!booksFilteredLibrary ? (
 									<h3>loading</h3>
-								) : (
-									libraryToRender.map(book => {
+								) : <><StyledShelfBooks> 
+									{libraryToRender.map(book => {
 										return <StyledImageBook onClick={() => navigate(`/book/${book.id}`)} key={book.id} src={book.image} />;
-									})
-								)}
-							</StyledShelfBooks>
+									})}
+								</StyledShelfBooks>
+								{currentUser.library.length > 5 &&<StyledMoreBooks></StyledMoreBooks>}
+								</>
+								}
+							</StyledShelfBooksContainer>
 						</div>
 						<div>
 							<StyledShelfData>
 								<StyledShelfTitle>Quiero Leer...</StyledShelfTitle>
 								<StyledShelfTitle>{currentUser.toRead.length}</StyledShelfTitle>
 							</StyledShelfData>
-							<StyledShelfBooks>
+							<StyledShelfBooksContainer>
 							{!booksFilteredToRead ? (
 									<h3>loading</h3>
-								) : (
-									toReadToRender.map(book => {
+								) : <><StyledShelfBooks> 
+								{toReadToRender.map(book => {
 										return <StyledImageBook onClick={() => navigate(`/book/${book.id}`)} key={book.id} src={book.image} />;
-									})
-								)}
-							</StyledShelfBooks>
+									})}
+									</StyledShelfBooks>
+									{currentUser.toRead.length > 5 &&<StyledMoreBooks></StyledMoreBooks>}
+									</>
+									}
+							</StyledShelfBooksContainer>
 						</div>
 						<div>
 							<StyledShelfData>
@@ -150,15 +158,18 @@ const UserProfile = () => {
 									{currentUser.abandoned.length}
 								</StyledShelfTitle>
 							</StyledShelfData>
-							<StyledShelfBooks>
+							<StyledShelfBooksContainer>
 							{!booksFilteredAbandoned ? (
 									<h3>loading</h3>
-								) : (
-									abandonedToRender.map(book => {
+								) :  <><StyledShelfBooks> 
+								{abandonedToRender.map(book => {
 										return <StyledImageBook onClick={() => navigate(`/book/${book.id}`)} key={book.id} src={book.image} />;
-									})
-								)}
-							</StyledShelfBooks>
+									})}
+									</StyledShelfBooks>
+									{currentUser.abandoned.length > 5 &&<StyledMoreBooks></StyledMoreBooks>}
+									</>
+									}
+							</StyledShelfBooksContainer>
 						</div>
 					</div>
 				</StyledMainContent>

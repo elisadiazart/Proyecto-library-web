@@ -20,7 +20,7 @@ const StyledChallenge = styled.div`
 	align-items: center;
 	padding: 2rem;
 	gap: 0.5rem;
-	margin-bottom: 3rem;
+	margin: 1rem 0 3rem 0;
 `;
 
 const StyledMainContent = styled.div`
@@ -79,8 +79,13 @@ const StyledShelfData = styled.div`
 const StyledShelfBooks = styled.div`
 	display: flex;
 	height: 150px;
-	gap: 0.5rem;
-	margin-bottom: 2rem;
+	gap: 1rem;
+`;
+
+const StyledShelfBooksContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1rem;
 `;
 
 const StyledCurrentReadings = styled.div`
@@ -138,6 +143,12 @@ const StyledImageBook = styled.img`
 	height: 150px;
 	border-radius: 0px 10px 10px 0px;
 	cursor: pointer;
+	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.31);
+	transition: transform 0.2s;
+
+	&:hover {
+		transform: scale(110%);
+	}
 `;
 
 const StyledReadingCard = styled.div`
@@ -156,6 +167,12 @@ const StyledImageReading = styled.img`
 	object-fit: cover;
 	border-radius: 0px 10px 10px 0px;
 	cursor: pointer;
+	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.31);
+	transition: transform 0.2s;
+
+	&:hover {
+		transform: scale(105%);
+	}
 `;
 
 const StyledButtonBlack = styled.button`
@@ -173,6 +190,32 @@ const StyledButtonBlack = styled.button`
 	&:hover {
 		background-color: ${COLORS.yellow};
 		color: black;
+		font-weight: 600;
+	}
+`;
+
+const StyledMoreBooks = styled.div`
+	width: 50px;
+	background-color: black;
+	border-radius: 0 20px 20px 0;
+	position: relative;
+	cursor: pointer;
+
+	&::after {
+		content: '+';
+		color: ${COLORS.yellow};
+		font-size: 1.8rem;
+		position: absolute;
+		top: 50%;
+		right: 50%;
+		transform: translate(50%, -50%);
+	}
+
+	&:hover {
+		background-color: ${COLORS.yellow};
+		&::after {
+			color: black;
+		}
 	}
 `;
 
@@ -194,5 +237,7 @@ export {
 	StyledSmallText,
 	StyledImageBook,
 	StyledReadingCard,
-	StyledImageReading
+	StyledImageReading,
+	StyledMoreBooks,
+	StyledShelfBooksContainer
 };
