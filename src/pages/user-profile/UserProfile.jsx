@@ -23,7 +23,6 @@ import {
 	StyledShelfBooksContainer
 } from './styles';
 import { AuthContext } from '../../contexts/auth.context';
-import OutlineButton from '../../components/outline-button/OutlineButton';
 import { onSnapshot } from 'firebase/firestore';
 import {
 	blogCollectionReference,
@@ -98,7 +97,7 @@ const UserProfile = () => {
 							) : (
 								<StyledProfile src={currentUser.profilePicture} alt='profile' />
 							)}
-							<OutlineButton text='cambiar foto' />
+							<input type="file" onChange={(e)=>handleLoadFile(e)}/>
 						</StyledImageContainer>
 						<StyledSmallText>{currentUser.email}</StyledSmallText>
 					</StyledProfileContainer>
@@ -246,5 +245,9 @@ const getBooksByIdReading= async (
 	);
 	setBooksFilteredReading(filteredBooks);
 };
+
+const handleLoadFile = (e) => {
+	console.log(e.target.files);
+}
 
 export default UserProfile;
