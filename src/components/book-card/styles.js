@@ -48,7 +48,7 @@ const StyledCover = styled.img`
 	height: 100%;
 	object-fit: cover;
 	border-radius: 0px 10px 10px 0px;
-	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.31);
+	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.21);
 	cursor: pointer;
 `;
 

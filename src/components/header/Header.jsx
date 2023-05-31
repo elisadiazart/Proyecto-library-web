@@ -56,7 +56,14 @@ const Header = () => {
 									<NavLink href=''>Siguiendo</NavLink>
 								</StyledLi> */}
 								<StyledProfileDiv>
-									<StyledUserIcon src='/profile.jpeg' alt='user' />
+									<StyledUserIcon
+										src={
+											currentUser.profilePicture === ''
+												? '/profile.jpeg'
+												: currentUser.profilePicture
+										}
+										alt='user'
+									/>
 									<StyledLogOut>
 										<StyledProfileOption
 											onClick={() => navigate(`/user/${currentUser.uid}`)}

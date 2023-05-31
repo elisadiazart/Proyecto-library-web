@@ -9,7 +9,7 @@ import { removeAccents } from '../../hooks/removeAccents';
 import PaginationController from '../../components/pagination-controller/PaginationController';
 
 const BookPerGenre = () => {
-	const booksPerPage = 12;
+	const booksPerPage = 18;
 	const [currentPage, setCurrentPage] = useState(0);
 	const [books, setBooks] = useState([]);
 	const params = useParams();

@@ -132,7 +132,7 @@ const StyledSmallText = styled.p`
 		switch (props.variant) {
 			case 'bold':
 				return css`
-					font-weight: 600;
+					font-family: 'Cygre Semibold';
 				`;
 		}
 	}}
@@ -143,7 +143,7 @@ const StyledImageBook = styled.img`
 	height: 150px;
 	border-radius: 0px 10px 10px 0px;
 	cursor: pointer;
-	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.31);
+	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.21);
 	transition: transform 0.2s;
 
 	&:hover {
@@ -167,7 +167,7 @@ const StyledImageReading = styled.img`
 	object-fit: cover;
 	border-radius: 0px 10px 10px 0px;
 	cursor: pointer;
-	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.31);
+	box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.21);
 	transition: transform 0.2s;
 
 	&:hover {
@@ -191,6 +191,7 @@ const StyledButtonBlack = styled.button`
 		background-color: ${COLORS.yellow};
 		color: black;
 		font-weight: 600;
+		outline: 1px solid black;
 	}
 `;
 
@@ -213,6 +214,7 @@ const StyledMoreBooks = styled.div`
 
 	&:hover {
 		background-color: ${COLORS.yellow};
+
 		&::after {
 			color: black;
 		}
