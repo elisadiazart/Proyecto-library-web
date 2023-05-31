@@ -23,6 +23,10 @@ const StyledOption = styled.p`
 	&:last-child {
 		border-bottom: none;
 	}
+
+	&:hover {
+		text-decoration: underline;
+	}
 `;
 
 export { StyledOption, StyledOptions };
