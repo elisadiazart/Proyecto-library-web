@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { COLORS } from '../../constants/colors';
 
 const StyledMain = styled.main`
@@ -8,6 +8,7 @@ const StyledMain = styled.main`
 	display: flex;
 	justify-content: space-between;
 	position: relative;
+	align-items: flex-start;
 `;
 
 const StyledChallenge = styled.div`
@@ -65,6 +66,7 @@ const StyledShelfTitle = styled.h3`
 	font-family: 'Cygre Medium Italic', sans-serif;
 	text-transform: uppercase;
 	font-size: 1rem;
+	margin-bottom: 0.5rem;
 `;
 
 const StyledShelfData = styled.div`
@@ -81,14 +83,23 @@ const StyledShelfBooks = styled.div`
 `;
 
 const StyledCurrentReadings = styled.div`
-	width: 300px;
-	height: 640px;
+	width: 310px;
 	background-color: #eae5d9;
 	border-radius: 22px;
 	margin-top: 3.4rem;
-	justify-content: center;
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
+	padding: 2rem 2rem;
+	padding-top: 3rem
+		${props => {
+			switch (props.variant) {
+				case 'empty':
+					return css`
+						justify-content: center;
+					`;
+			}
+		}};
 `;
 
 const StyledMessage = styled.p`
@@ -106,17 +117,66 @@ const StyledImageContainer = styled.div`
 	gap: 1rem;
 `;
 
-const StyledEmail = styled.p`
-	font-family: 'Poppins', sans-serif;
-	font-size: 0.8rem;
+const StyledSmallText = styled.p`
+	font-family: 'Cygre Book', sans-serif;
+	font-size: 0.9rem;
+	margin: 0.3rem 0;
+	line-height: 130%;
+	${props => {
+		switch (props.variant) {
+			case 'bold':
+				return css`
+					font-weight: 600;
+				`;
+		}
+	}}
 `;
 
 const StyledImageBook = styled.img`
 	width: 100px;
 	height: 150px;
+	border-radius: 0px 10px 10px 0px;
+	cursor: pointer;
+`;
+
+const StyledReadingCard = styled.div`
+	display: flex;
+	gap: 1rem;
+	padding-bottom: 2rem;
+
+	&:nth-child(3) {
+		border-bottom: 1px solid black;
+	}
+`;
+
+const StyledImageReading = styled.img`
+	width: 90px;
+	height: 130px;
+	object-fit: cover;
+	border-radius: 0px 10px 10px 0px;
+	cursor: pointer;
+`;
+
+const StyledButtonBlack = styled.button`
+	background-color: black;
+	color: white;
+	padding: 0.7rem 1.5rem;
+	border: none;
+	border-radius: 50px;
+	text-transform: uppercase;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	margin: 0.5rem 0;
+	cursor: pointer;
+
+	&:hover {
+		background-color: ${COLORS.yellow};
+		color: black;
+	}
 `;
 
 export {
+	StyledButtonBlack,
 	StyledMain,
 	StyledChallenge,
 	StyledMainContent,
@@ -130,6 +190,8 @@ export {
 	StyledCurrentReadings,
 	StyledMessage,
 	StyledImageContainer,
-	StyledEmail,
-	StyledImageBook
+	StyledSmallText,
+	StyledImageBook,
+	StyledReadingCard,
+	StyledImageReading
 };
