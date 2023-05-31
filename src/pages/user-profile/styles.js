@@ -72,14 +72,15 @@ const StyledShelfTitle = styled.h3`
 const StyledShelfData = styled.div`
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.8rem;
+	border-bottom: 1px solid black;
 `;
 
 const StyledShelfBooks = styled.div`
 	display: flex;
 	height: 150px;
 	gap: 0.5rem;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 `;
 
 const StyledCurrentReadings = styled.div`
